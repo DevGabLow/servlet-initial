@@ -8,7 +8,7 @@ public class Empresa {
 
 	private String nome;
 	
-	private Date dataAbertura;
+	private Date dataAbertura = new Date();
 
 	public Long getId() {
 		return id;

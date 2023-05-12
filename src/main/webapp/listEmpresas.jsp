@@ -15,7 +15,11 @@
 	List de empresas
 	<ul>
 		<c:forEach items="${ empresas }" var="empresa">
-			<li>${ empresa.nome } - <fmt:formatDate value="${ empresa.dataAbertura }" pattern="dd/MM/YYYY HH:mm" /> <a href="">editar</a> <a href=""> remover</a></li>
+			<li>
+				${ empresa.nome } - <fmt:formatDate value="${ empresa.dataAbertura }" pattern="dd/MM/YYYY HH:mm" /> 
+				<a href="showEmpresa?id=${ empresa.id }">editar</a>
+				<a href="<c:url value="/removeEmpresa?id=${ empresa.id }" />"> remover</a>
+			 </li>
 		</c:forEach>
 	</ul>
 	<a href='<c:url value="/formNovaEmpresa.jsp" />'>Criar</a>

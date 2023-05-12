@@ -8,10 +8,11 @@
 </head>
 <body>
 
-<form action="${linkServletNovaEmpresa }" method="post">
-	Nome: <input name="nome" type="text" /><br/>
-	Data: <input name="data" type="text">
-	<button type="submit">Cadastrar</button>
-</form>
+	<form action="${linkServletNovaEmpresa }" method="post">
+
+		Nome: <input name="nome" type="text" /><br /> Data: <input
+			name="data" type="text">
+		<button type="submit">Cadastrar</button>
+	</form>
 </body>
 </html>
