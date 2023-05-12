@@ -17,11 +17,11 @@
 		<c:forEach items="${ empresas }" var="empresa">
 			<li>
 				${ empresa.nome } - <fmt:formatDate value="${ empresa.dataAbertura }" pattern="dd/MM/YYYY HH:mm" /> 
-				<a href="showEmpresa?id=${ empresa.id }">editar</a>
-				<a href="<c:url value="/removeEmpresa?id=${ empresa.id }" />"> remover</a>
+				<a href="main?action=findOne&id=${ empresa.id }">editar</a>
+				<a href="main?action=delete&id=${ empresa.id }"> remover</a>
 			 </li>
 		</c:forEach>
 	</ul>
-	<a href='<c:url value="/formNovaEmpresa.jsp" />'>Criar</a>
+	<a href="main?action=viewCreate" >Criar</a>
 </body>
 </html>
