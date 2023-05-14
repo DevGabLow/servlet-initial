@@ -9,6 +9,8 @@
 <title>Java Standard Taglib</title>
 </head>
 <body>
+	Usuário: ${ user.login }
+	<c:import url="logout-partial.jsp"/>
 	<c:if test="${not empty empresa }">
 		Empresa ${ empresa } cadastrada com sucesso. <br/>
 	</c:if>

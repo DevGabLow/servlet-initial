@@ -10,12 +10,14 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.com.al.gerenciador.entity.Db;
 import br.com.al.gerenciador.entity.Empresa;
+import br.com.al.gerenciador.entity.User;
 import br.com.al.gerenciador.local.Action;
 
-public class EmpresasAction implements Action{
+public class MainAction implements Action{
 
 	public String list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Db banco = new Db();
@@ -86,6 +88,35 @@ public class EmpresasAction implements Action{
 		db.removeEmpresa(id);
 		return "redirect:main?action=list";
 	}
+
+	
+	public String login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String login = request.getParameter("login");
+		String password = request.getParameter("password");
+		Db db = new Db();
+		User user =  db.existUser(login,password);
+		if(user != null) {
+			HttpSession session = request.getSession();
+			session.setAttribute("user", user);
+			return "redirect:main?action=list";			
+		}
+		return "redirect:main?action=viewLogin";
+	}
+
+	public String viewLogin(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		return "foward:formLogin.jsp";
+	}
+
+
+	public String logout(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		
+		session.invalidate();
+		return "redirect:main?action=viewLogin";
+	}
+	
 	
 	
 }

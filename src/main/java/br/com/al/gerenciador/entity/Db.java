@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 public class Db {
 	private static List<Empresa> empresas = new ArrayList<>();
+	private static List<User> users = new ArrayList<>();
 	private static Long sequencialId = 1L;
 	static {
 		Empresa empresa = new Empresa();
@@ -20,6 +21,17 @@ public class Db {
 		empresa2.setId(Db.sequencialId++);
 		Db.empresas.add(empresa);
 		Db.empresas.add(empresa2);
+		
+		User u1 = new User();
+		u1.setLogin("gabriel");
+		u1.setSenha("123456");
+		
+		User u2 = new User();
+		u2.setLogin("ana");
+		u2.setSenha("123456");
+		
+		Db.users.add(u1);
+		Db.users.add(u2);
 	}
 	
 	public static <T> Collector<T, ?, T> toSingleton() {
@@ -27,7 +39,7 @@ public class Db {
 	            Collectors.toList(),
 	            list -> {
 	                if (list.size() != 1) {
-	                    throw new IllegalStateException();
+	                    return null;
 	                }
 	                return list.get(0);
 	            }
@@ -47,6 +59,11 @@ public class Db {
 	}
 	public Empresa showEmpresaById(Long id) {
 		return Db.empresas.stream().filter(emp -> emp.getId().equals(id)).collect(toSingleton());
+	}
+
+	public User existUser(String login, String password) {
+		
+		return Db.users.stream().filter(us -> (us.getLogin().equals(login) && us.getSenha().equals(password))).collect(toSingleton());
 	}
 
 }

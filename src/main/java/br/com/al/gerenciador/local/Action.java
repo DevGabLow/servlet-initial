@@ -17,4 +17,10 @@ public interface Action {
 	public String delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 	
 	public String viewCreate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+	
+	public String login(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException;
+	
+	public String viewLogin(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException;
+	
+	public String logout(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException;
 }

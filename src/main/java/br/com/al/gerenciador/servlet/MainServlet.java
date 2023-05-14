@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.com.al.gerenciador.local.Action;
 
@@ -18,11 +19,17 @@ public class MainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String action = request.getParameter("action");
+		String action = request.getParameter("action");	
 		String callBackAction = null;
-		
+		HttpSession session = request.getSession();
+		boolean userIsLogged = !(session.getAttribute("user") == null);
+		boolean pageNotProtected = !(action.equals("login") || action.equals("viewLogin"));
+		if(!userIsLogged && pageNotProtected) {
+			response.sendRedirect("main?action=viewLogin");
+			return;
+		}
 		try {
-			Class classGeneric = Class.forName("br.com.al.gerenciador.action.EmpresasAction" );
+			Class classGeneric = Class.forName("br.com.al.gerenciador.action.MainAction" );
 			Action act = (Action) classGeneric.newInstance();
 			Method method = act.getClass().getMethod(action, HttpServletRequest.class, HttpServletResponse.class);
 			callBackAction = (String) method.invoke(act, request,response);

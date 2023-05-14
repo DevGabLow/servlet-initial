@@ -8,7 +8,7 @@
 <title>Nova Empresa</title>
 </head>
 <body>
-
+	<c:import url="logout-partial.jsp"/>
 <form action="${linkServletUpdateEmpresa}" method="post">
 		<input type="hidden" name="id" value="${ empresa.id }"/> 
 		<input type="hidden" name="action" value="create" />
