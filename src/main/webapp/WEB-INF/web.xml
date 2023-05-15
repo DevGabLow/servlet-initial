@@ -27,4 +27,14 @@
 		<filter-name>AF</filter-name>
 		<url-pattern>/main</url-pattern>
 	</filter-mapping>
+
+	<filter>
+		<filter-name>CF</filter-name>
+		<filter-class>br.com.al.gerenciador.servlet.ControllerFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>CF</filter-name>
+		<url-pattern>/main</url-pattern>
+	</filter-mapping>
 </web-app>
