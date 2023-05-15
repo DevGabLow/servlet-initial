@@ -5,13 +5,13 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Nova Empresa</title>
+<title>Editar Empresa</title>
 </head>
 <body>
 	<c:import url="logout-partial.jsp"/>
 <form action="${linkServletUpdateEmpresa}" method="post">
 		<input type="hidden" name="id" value="${ empresa.id }"/> 
-		<input type="hidden" name="action" value="create" />
+		<input type="hidden" name="action" value="update" />
 	Nome: <input name="nome" type="text"  value="${ empresa.nome }"/><br/>
 	Data: <input name="data" type="text" value="<fmt:formatDate value="${ empresa.dataAbertura }" pattern="dd/MM/YYYY" />">
 	<button type="submit">Atualizar</button>

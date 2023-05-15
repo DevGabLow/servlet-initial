@@ -21,13 +21,7 @@ public class MainServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");	
 		String callBackAction = null;
-		HttpSession session = request.getSession();
-		boolean userIsLogged = !(session.getAttribute("user") == null);
-		boolean pageNotProtected = !(action.equals("login") || action.equals("viewLogin"));
-		if(!userIsLogged && pageNotProtected) {
-			response.sendRedirect("main?action=viewLogin");
-			return;
-		}
+		
 		try {
 			Class classGeneric = Class.forName("br.com.al.gerenciador.action.MainAction" );
 			Action act = (Action) classGeneric.newInstance();
